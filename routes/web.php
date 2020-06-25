@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'RecipeController@index');
+Route::get('/new-recipe', 'RecipeController@addRecipe');
+Route::post('/save-recipe', 'RecipeController@saveRecipe');
