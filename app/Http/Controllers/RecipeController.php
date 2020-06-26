@@ -30,6 +30,15 @@ class RecipeController extends Controller
             'url' => $request->input('url'),
             'comment' => $request->input('comment')
         ]);
-        return redirect('/')->with('success', 'Receptas buvo išsaugotas');
+        return redirect()->route('home')->with('success', 'Receptas buvo išsaugotas');
+    }
+
+
+    public function allRecipes() {
+        return view('pages.all-recipes', ['recipes' => Recipe::all()]);
+    }
+
+    public function oneRecipe(Recipe $recipe) {
+        return view('pages.one-recipe', ['recipe' => $recipe]);
     }
 }

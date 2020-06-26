@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Weekly Menu</a>
+        <a class="navbar-brand" href="{{route('home')}}">Weekly Menu</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,8 +12,8 @@
                         Receptai
                     </a>
                     <div class="dropdown-menu" aria-labelledby="recipesDropdown">
-                        <a class="dropdown-item" href="/new-recipe">Pridėti naują receptą</a>
-                        <a class="dropdown-item" href="/all-recipes">Visi receptai</a>
+                        <a class="dropdown-item" href="{{route('newRecipe')}}">Pridėti naują receptą</a>
+                        <a class="dropdown-item" href="{{route('allRecipes')}}">Visi receptai</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

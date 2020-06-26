@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'RecipeController@index');
-Route::get('/new-recipe', 'RecipeController@addRecipe');
+Route::get('/', 'RecipeController@index')->name('home');
+
+Route::get('/new-recipe', 'RecipeController@addRecipe')->name('newRecipe');
 Route::post('/save-recipe', 'RecipeController@saveRecipe');
+
+Route::get('/all-recipes', 'RecipeController@allRecipes')->name('allRecipes');
+Route::get('/recipe/{recipe}', 'RecipeController@oneRecipe')->name('oneRecipe');
