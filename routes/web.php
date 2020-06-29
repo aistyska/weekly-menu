@@ -20,3 +20,6 @@ Route::post('/save-recipe', 'RecipeController@saveRecipe');
 
 Route::get('/all-recipes', 'RecipeController@allRecipes')->name('allRecipes');
 Route::get('/recipe/{recipe}', 'RecipeController@oneRecipe')->name('oneRecipe');
+
+Route::get('/edit-recipe/{recipe}', 'RecipeController@editRecipe')->name('editRecipe');
+Route::post('/save-updated-recipe/{recipe}', 'RecipeController@updateRecipe');

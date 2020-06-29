@@ -41,4 +41,21 @@ class RecipeController extends Controller
     public function oneRecipe(Recipe $recipe) {
         return view('pages.one-recipe', ['recipe' => $recipe]);
     }
+
+    public function editRecipe(Recipe $recipe) {
+        return view('pages.edit-recipe', ['recipe' => $recipe]);
+    }
+
+    public function updateRecipe(Recipe $recipe, Request $request) {
+        $request->validate([
+            'title' => ['required', 'max:255'],
+            'ingredients' => ['required'],
+            'instructions' => ['required'],
+            'url' => ['nullable', 'url', 'max:255'],
+            'comment' => ['nullable', 'max:1000']
+        ]);
+
+        $recipe->update($request->only(['title', 'ingredients', 'instructions', 'url', 'comment']));
+        return redirect()->route('oneRecipe', ['recipe' => $recipe])->with('success', 'Receptas buvo atnaujintas');
+    }
 }
