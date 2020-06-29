@@ -23,3 +23,5 @@ Route::get('/recipe/{recipe}', 'RecipeController@oneRecipe')->name('oneRecipe');
 
 Route::get('/edit-recipe/{recipe}', 'RecipeController@editRecipe')->name('editRecipe');
 Route::post('/save-updated-recipe/{recipe}', 'RecipeController@updateRecipe');
+
+Route::get('/delete-recipe/{recipe}', 'RecipeController@deleteRecipe')->name('deleteRecipe');

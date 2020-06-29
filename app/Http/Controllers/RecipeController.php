@@ -23,14 +23,14 @@ class RecipeController extends Controller
             'url' => ['nullable', 'url', 'max:255'],
             'comment' => ['nullable', 'max:1000']
         ]);
-        Recipe::create([
+        $recipe = Recipe::create([
             'title' => $request->input('title'),
             'ingredients' => $request->input('ingredients'),
             'instructions' => $request->input('instructions'),
             'url' => $request->input('url'),
             'comment' => $request->input('comment')
         ]);
-        return redirect()->route('home')->with('success', 'Receptas buvo išsaugotas');
+        return redirect()->route('oneRecipe', ['recipe' => $recipe])->with('success', 'Receptas buvo išsaugotas');
     }
 
 
@@ -57,5 +57,10 @@ class RecipeController extends Controller
 
         $recipe->update($request->only(['title', 'ingredients', 'instructions', 'url', 'comment']));
         return redirect()->route('oneRecipe', ['recipe' => $recipe])->with('success', 'Receptas buvo atnaujintas');
+    }
+
+    public function deleteRecipe(Recipe $recipe){
+        $recipe->delete();
+        return redirect()->route('allRecipes')->with('success', 'Receptas buvo ištrintas.');
     }
 }

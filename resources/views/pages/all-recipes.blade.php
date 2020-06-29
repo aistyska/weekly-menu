@@ -4,6 +4,12 @@
 
 @section('content')
 
+    @if (session('success'))
+        <div class="alert alert-success mt-1">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <h2>Visi receptai</h2>
     <div class="row row-cols-1 row-cols-md-2">
         @foreach($recipes as $recipe)
