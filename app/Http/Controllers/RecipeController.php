@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Recipe;
+use Illuminate\Validation\Rule;
 
 class RecipeController extends Controller
 {
@@ -17,10 +18,10 @@ class RecipeController extends Controller
 
     public function saveRecipe(Request $request){
         $request->validate([
-            'title' => ['required', 'max:255'],
+            'title' => ['required', 'max:255', 'unique:App\Recipe,title'],
             'ingredients' => ['required'],
             'instructions' => ['required'],
-            'url' => ['nullable', 'url', 'max:255'],
+            'url' => ['nullable', 'url', 'max:2000'],
             'comment' => ['nullable', 'max:1000']
         ]);
         $recipe = Recipe::create([
@@ -48,10 +49,10 @@ class RecipeController extends Controller
 
     public function updateRecipe(Recipe $recipe, Request $request) {
         $request->validate([
-            'title' => ['required', 'max:255'],
+            'title' => ['required', 'max:255', Rule::unique('recipes')->ignore($recipe)],
             'ingredients' => ['required'],
             'instructions' => ['required'],
-            'url' => ['nullable', 'url', 'max:255'],
+            'url' => ['nullable', 'url', 'max:2000'],
             'comment' => ['nullable', 'max:1000']
         ]);
 

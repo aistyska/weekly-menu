@@ -133,6 +133,24 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'title' => [
+            'required' => 'Recepto pavadinimas yra privalomas.',
+            'max' => 'Pavadinimas negali būti ilgesnis nei :max simboliai.',
+            'unique' => 'Receptas tokiu pavadinimu jau egzistuoja.'
+        ],
+        'ingredients' => [
+            'required' => 'Ingredientų sąrašas yra privalomas.'
+        ],
+        'instructions' => [
+            'required' => 'Gaminimo eiga turi būti surašyta.'
+        ],
+        'url' => [
+            'url' => 'Įvestas šaltinio adresas neegzistuoja.',
+            'max' => 'Šaltinio adresas negali būti ilgesnis nei :max simboliai.'
+        ],
+        'comment' => [
+            'max' => 'Komentaeas negali būti ilgesnis nei :max simbolių.'
+        ]
     ],
 
     /*
