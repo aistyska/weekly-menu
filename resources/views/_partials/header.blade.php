@@ -21,7 +21,7 @@
                         Meniu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="menusDropdown">
-                        <a class="dropdown-item" href="#">Generuoti naują meniu</a>
+                        <a class="dropdown-item" href="{{ route('genType') }}">Naujas savaitės meniu</a>
                         <a class="dropdown-item" href="#">Ankstesni meniu</a>
                     </div>
                 </li>

@@ -25,3 +25,8 @@ Route::get('/edit-recipe/{recipe}', 'RecipeController@editRecipe')->name('editRe
 Route::post('/save-updated-recipe/{recipe}', 'RecipeController@updateRecipe');
 
 Route::get('/delete-recipe/{recipe}', 'RecipeController@deleteRecipe')->name('deleteRecipe');
+
+
+Route::get('/generation-type', 'MenuController@generationType')->name('genType');
+
+Route::get('/menu/generated', 'MenuController@generateMenu')->name('generate');
