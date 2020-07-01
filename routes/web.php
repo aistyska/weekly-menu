@@ -29,4 +29,8 @@ Route::get('/delete-recipe/{recipe}', 'RecipeController@deleteRecipe')->name('de
 
 Route::get('/generation-type', 'MenuController@generationType')->name('genType');
 
-Route::get('/menu/generated', 'MenuController@generateMenu')->name('generate');
+Route::get('/menu/generate', 'MenuController@generateMenu')->name('generate');
+
+Route::post('/save-menu', 'MenuController@saveMenu');
+
+Route::get('/menu/{menu}', 'MenuController@oneMenu')->name('oneMenu');
