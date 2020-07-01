@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Recipe;
+use App\Menu;
 
 class MenuController extends Controller
 {
@@ -16,4 +17,6 @@ class MenuController extends Controller
         $recipes = Recipe::inRandomOrder()->limit(7)->get();
         return view('pages.generated-menu', ['menu' => $recipes]);
     }
+
+
 }
