@@ -33,4 +33,5 @@ Route::get('/menu/generate', 'MenuController@generateMenu')->name('generate');
 
 Route::post('/save-menu', 'MenuController@saveMenu');
 
+Route::get('/menu/all', 'MenuController@allMenus')->name('allMenus');
 Route::get('/menu/{menu}', 'MenuController@oneMenu')->name('oneMenu');

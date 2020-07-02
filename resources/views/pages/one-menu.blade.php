@@ -4,7 +4,8 @@
 
 @section('content')
 {{--    {{$menu->recipes()->orderBy('menu_recipe.week_day', 'asc')->toSql()}}--}}
-{{--    {{$menu->week_start}}--}}
+    <h2>Savaitės meniu</h2>
+    <p><u>{{ $menu->week_start . ' - ' . $date }}</u></p>
 
     <div class="table-responsive">
         <table class="table table-hover">

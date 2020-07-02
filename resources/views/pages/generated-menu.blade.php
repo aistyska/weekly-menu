@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Savaitės meniu')
+@section('title', 'Sugeneruotas savaitės meniu')
 
 @section('content')
 
@@ -51,7 +51,7 @@
                     <div class="modal-body row">
                         <div class="form-group col">
                             <label for="date">Pasirinkite savaitės menu pradžios datą (pirmadienį)</label>
-                            <input type="date" class="form-control" id="date" name="weekStart">
+                            <input type="date" class="form-control" id="date" name="weekStart" value="{{ old('weekStart') }}">
                             @error('weekStart')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

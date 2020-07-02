@@ -149,8 +149,13 @@ return [
             'max' => 'Šaltinio adresas negali būti ilgesnis nei :max simboliai.'
         ],
         'comment' => [
-            'max' => 'Komentaeas negali būti ilgesnis nei :max simbolių.'
-        ]
+            'max' => 'Komentaras negali būti ilgesnis nei :max simbolių.'
+        ],
+        'weekStart' => [
+            'required' => 'Svaitės pradžios data yra privaloma.',
+            'date' => 'Toks datos formatas nėra tinkamas.',
+            'after' => 'Pasirinkta data turi būti vėlesnė nei šiandien.',
+            'unique' => 'Šios savaitės meniu buvo išsaugotas anksčiau.']
     ],
 
     /*

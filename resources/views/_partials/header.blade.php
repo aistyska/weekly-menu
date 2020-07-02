@@ -22,7 +22,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="menusDropdown">
                         <a class="dropdown-item" href="{{ route('genType') }}">Naujas savaitės meniu</a>
-                        <a class="dropdown-item" href="#">Ankstesni meniu</a>
+                        <a class="dropdown-item" href="{{ route('allMenus') }}">Visi meniu</a>
                     </div>
                 </li>
             </ul>

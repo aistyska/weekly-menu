@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Recipe;
 use App\Menu;
+use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
@@ -21,7 +22,7 @@ class MenuController extends Controller
 
     public function saveMenu(Request $request){
         $request->validate([
-            'weekStart' => ['required', 'unique:App\Menu,week_start']
+            'weekStart' => ['required', 'date', 'after:today', 'unique:App\Menu,week_start']
         ]);
         $menu = new Menu;
         $menu->week_start = $request->input('weekStart');
@@ -42,7 +43,12 @@ class MenuController extends Controller
 
 
     public function oneMenu(Menu $menu){
-        return view('pages.one-menu', ['menu' => $menu]);
+        return view('pages.one-menu', ['menu' => $menu, 'date' => $menu->getWeekEnd()]);
     }
 
+
+    public function allMenus(){
+        $menus = Menu::orderBy('week_start', 'desc')->get();
+        return view('pages.all-menus', ['menus' => $menus]);
+    }
 }
