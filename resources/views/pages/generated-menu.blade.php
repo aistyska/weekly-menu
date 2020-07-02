@@ -74,3 +74,15 @@
     </div>
 
 @endsection
+
+@if($errors->any())
+
+    @section('scripts')
+        @parent
+
+        <script>
+            $('#saveMenuModal').modal('show')
+        </script>
+
+    @endsection
+@endif
