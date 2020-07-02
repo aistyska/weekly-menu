@@ -14,8 +14,15 @@ class MenuController extends Controller
     }
 
 
-    public function generateMenu(){
-        $recipes = Recipe::inRandomOrder()->limit(7)->get();
+    public function generateMenu(Request $request){
+        if ($request->old('_token') !== null) {
+            $recipes = [];
+            for ($i = 1; $i < 8; $i++){
+                $recipes[] = Recipe::find($request->old($i));
+            }
+        } else {
+            $recipes = Recipe::inRandomOrder()->limit(7)->get();
+        }
         return view('pages.generated-menu', ['menu' => $recipes]);
     }
 

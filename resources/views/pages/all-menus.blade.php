@@ -9,16 +9,16 @@
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
-            <tr>
-                <th scope="col">Savaitė</th>
-                <th scope="col">Pirmadienis</th>
-                <th scope="col">Antradienis</th>
-                <th scope="col">Trečiadienis</th>
-                <th scope="col">Ketvirtadienis</th>
-                <th scope="col">Penktadienis</th>
-                <th scope="col">Šeštadienis</th>
-                <th scope="col">Sekmadienis</th>
-            </tr>
+                <tr>
+                    <th scope="col">Savaitė</th>
+                    <th scope="col">Pirmadienis</th>
+                    <th scope="col">Antradienis</th>
+                    <th scope="col">Trečiadienis</th>
+                    <th scope="col">Ketvirtadienis</th>
+                    <th scope="col">Penktadienis</th>
+                    <th scope="col">Šeštadienis</th>
+                    <th scope="col">Sekmadienis</th>
+                </tr>
             </thead>
             <tbody>
             @foreach($menus as $menu)
