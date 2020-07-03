@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\Monday;
 use Illuminate\Http\Request;
 use App\Recipe;
 use App\Menu;
@@ -29,7 +30,13 @@ class MenuController extends Controller
 
     public function saveMenu(Request $request){
         $request->validate([
-            'weekStart' => ['required', 'date', 'after:today', 'unique:App\Menu,week_start']
+            'weekStart' => [
+                'required',
+                'date',
+                'after:today',
+                'unique:App\Menu,week_start',
+                new Monday
+            ]
         ]);
         $menu = new Menu;
         $menu->week_start = $request->input('weekStart');

@@ -155,7 +155,8 @@ return [
             'required' => 'Svaitės pradžios data yra privaloma.',
             'date' => 'Toks datos formatas nėra tinkamas.',
             'after' => 'Pasirinkta data turi būti vėlesnė nei šiandien.',
-            'unique' => 'Šios savaitės meniu buvo išsaugotas anksčiau.']
+            'unique' => 'Šios savaitės meniu buvo išsaugotas anksčiau.',
+            'monday' => 'Savaitės pradžios diena turi būti pirmadienis.']
     ],
 
     /*
