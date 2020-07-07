@@ -28,6 +28,11 @@ class MenuController extends Controller
     }
 
 
+    public function manualMenu(){
+        return view('pages.manual-menu', ['recipes' => Recipe::orderBy('title', 'asc')->get()]);
+    }
+
+
     public function saveMenu(Request $request){
         $request->validate([
             'weekStart' => [

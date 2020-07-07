@@ -30,6 +30,7 @@ Route::get('/delete-recipe/{recipe}', 'RecipeController@deleteRecipe')->name('de
 Route::get('/generation-type', 'MenuController@generationType')->name('genType');
 
 Route::get('/menu/generate', 'MenuController@generateMenu')->name('generate');
+Route::get('/menu/manual', 'MenuController@manualMenu')->name('manual');
 
 Route::post('/save-menu', 'MenuController@saveMenu');
 

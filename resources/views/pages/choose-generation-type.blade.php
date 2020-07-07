@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Pasidaryti pačiam</h4>
                     <p class="card-text">Galėsite išsirinkti patiekalus ir savaitės meniu susidarysite pats.</p>
-                    <a href="#" class="btn btn-outline-dark">Išsirinkti patiekalus</a>
+                    <a href="{{ route('manual') }}" class="btn btn-outline-dark">Išsirinkti patiekalus</a>
                 </div>
             </div>
         </div>
