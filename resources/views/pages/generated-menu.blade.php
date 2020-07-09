@@ -6,7 +6,7 @@
 
     <h2>Savaitės meniu</h2>
     <h5>Vienas patiekalas yra skirtas vienos dienos vakarienei bei kitos dienos pietums.</h5>
-    <p class="text-muted">Patiekalo receptą galite pamatyti paspaudę ant jo pavadinimo.</p>
+    <p class="text-muted">Patiekalai į savaitės meniu yra sudėti atsitiktine tvarka. Patiekalo receptą galite pamatyti paspaudę ant jo pavadinimo.</p>
     <p>Nepatinka šis meniu? <a href="{{ route('generate') }}" class="btn btn-outline-dark btn-sm">Generuoti naują</a></p>
 
     <p>Patinka meniu?</p>

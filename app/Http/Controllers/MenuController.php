@@ -33,6 +33,13 @@ class MenuController extends Controller
     }
 
 
+    public function mixedMenu(){
+        $randomRecipes = Recipe::inRandomOrder()->limit(7)->get('id');
+        $recipes = Recipe::orderBy('title', 'asc')->get();
+        return view('pages.generate-manual-menu', ['randomRecIds' => $randomRecipes, 'recipes' => $recipes]);
+    }
+
+
     public function saveMenu(Request $request){
         $request->validate([
             'weekStart' => [

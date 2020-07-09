@@ -31,6 +31,7 @@ Route::get('/generation-type', 'MenuController@generationType')->name('genType')
 
 Route::get('/menu/generate', 'MenuController@generateMenu')->name('generate');
 Route::get('/menu/manual', 'MenuController@manualMenu')->name('manual');
+Route::get('/menu/generate-and-choose', 'MenuController@mixedMenu')->name('genAndManual');
 
 Route::post('/save-menu', 'MenuController@saveMenu');
 

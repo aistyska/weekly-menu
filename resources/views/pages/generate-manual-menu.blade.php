@@ -1,13 +1,12 @@
 @extends('main')
 
-@section('title', 'Patiekalų pasirinkimas')
+@section('title', 'Sugeneruotas meniu ir jo koregavimas')
 
 @section('content')
 
     <h2>Savaitės meniu</h2>
     <h5>Vienas patiekalas yra skirtas vienos dienos vakarienei bei kitos dienos pietums.</h5>
-    <p>Pasirinkite patinkančius patiekalus ir pats susikurkite savo savaitės meniu.</p>
-
+    <p>Patiekalai į savaitės meniu yra sudėti atsitiktine tvarka. Jūs galite keisti patiekalus bei jų išdėstymo tvarką ir taip pakoreguoti automatiškai sugenetuotą savaitės meniu.</p>
 
     <form method="post" action="/save-menu">
         @csrf
@@ -35,20 +34,18 @@
                 <tbody>
                     <tr>
                         @for($day = 1; $day < 8; $day++)
-                        <td class="form-group">
-                            <select class="custom-select" name="{{ $day }}">
-                                @foreach($recipes as $recipe)
-                                <option value="{{ $recipe->id }}" @if(old($day) == $recipe->id) selected @endif>{{ $recipe->title }}</option>
-                                @endforeach
-                            </select>
-                        </td>
+                            <td class="form-group">
+                                <select class="custom-select" name="{{ $day }}">
+                                    @foreach($recipes as $recipe)
+                                        <option value="{{ $recipe->id }}" @if(old($day) == $recipe->id || (old($day) == null && $randomRecIds[$day - 1]->id == $recipe->id)) selected @endif>{{ $recipe->title }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
                         @endfor
                     </tr>
                 </tbody>
             </table>
         </div>
     </form>
-
-
 
 @endsection
