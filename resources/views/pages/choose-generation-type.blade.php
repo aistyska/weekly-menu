@@ -27,9 +27,18 @@
         <div class="col mb-4">
             <div class="card">
                 <div class="card-body">
+                    <h4 class="card-title">Generuoti ir koreguoti</h4>
+                    <p class="card-text">Savaitės meniu bus sugeneruotas automatiškai, o jūs galėsite keisti patiekalus ir jų tvarką.</p>
+                    <a href="{{ route('genAndManual') }}" class="btn btn-outline-dark">Generuoti ir rinktis</a>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="card">
+                <div class="card-body">
                     <h4 class="card-title">Pasirinkti iš ankstesnių</h4>
                     <p class="card-text">Savaitės meniu galėsite pasirinkti iš anksčiau sudarytų meniu sąrašo.</p>
-                    <a href="#" class="btn btn-outline-dark">Rinktis iš buvusių</a>
+                    <a href="{{ route('previousMenu') }}" class="btn btn-outline-dark">Rinktis iš buvusių</a>
                 </div>
             </div>
         </div>

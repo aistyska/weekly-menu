@@ -18,4 +18,9 @@ class Menu extends Model
         $weekEnds->add(new DateInterval('P7D'));
         return $weekEnds->format('Y-m-d');
     }
+
+
+    public function getOrderedRecipesByWeekDay() {
+        return $this->recipes()->orderBy('menu_recipe.week_day', 'asc')->get();
+    }
 }

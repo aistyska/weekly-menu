@@ -24,7 +24,7 @@
             @foreach($menus as $menu)
                 <tr>
                     <td><a href="{{ route('oneMenu', ['menu' => $menu]) }}" class="text-dark" target="_blank">{{ $menu->week_start . ' - ' . $menu->getWeekEnd() }}</a></td>
-                    @foreach($menu->recipes()->orderBy('menu_recipe.week_day', 'asc')->get() as $recipe)
+                    @foreach($menu->getOrderedRecipesByWeekDay() as $recipe)
                         <td><a href="{{route('oneRecipe', ['recipe' => $recipe->id])}}" class="text-dark" target="_blank">{{ $recipe->title }}</a></td>
                     @endforeach
                 </tr>

@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
+    private function getWeekValidation() {
+        return ['weekStart' => [
+            'required',
+            'date',
+            'after:today',
+            'unique:App\Menu,week_start',
+            new Monday
+        ]];
+    }
+
     public function generationType(){
         return view('pages.choose-generation-type');
     }
@@ -41,15 +51,7 @@ class MenuController extends Controller
 
 
     public function saveMenu(Request $request){
-        $request->validate([
-            'weekStart' => [
-                'required',
-                'date',
-                'after:today',
-                'unique:App\Menu,week_start',
-                new Monday
-            ]
-        ]);
+        $request->validate($this->getWeekValidation());
         $menu = new Menu;
         $menu->week_start = $request->input('weekStart');
 
@@ -63,6 +65,28 @@ class MenuController extends Controller
             }
             $menu->recipes()->attach($data);
         });
+
+        return redirect()->route('oneMenu', ['menu' => $menu]);
+    }
+
+
+    public function oldMenu(){
+        $menuIds = Menu::orderBy('week_start', 'desc')->get('id'); // ids of all menus
+        return view('pages.previous-menu', ['menus' => $menuIds]);
+    }
+
+
+    public function saveOldMenuAsNew(Request $request){
+        $request->validate($this->getWeekValidation());
+        $menu = new Menu;
+        $menu->week_start = $request->input('weekStart');
+        $menu->save();
+        $selectedMenu = Menu::find($request->input('selectedMenu'));
+        $data = [];
+        foreach ($selectedMenu->recipes as $recipe){
+            $data[$recipe->id] = ['week_day' => $recipe->pivot->week_day];
+        }
+        $menu->recipes()->attach($data);
 
         return redirect()->route('oneMenu', ['menu' => $menu]);
     }
