@@ -3,7 +3,13 @@
 @section('title', 'Savaitės menu')
 
 @section('content')
-{{--    {{$menu->recipes()->orderBy('menu_recipe.week_day', 'asc')->toSql()}}--}}
+
+    @if (session('success'))
+        <div class="alert alert-success mt-1">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <h2>Savaitės meniu</h2>
     <p><u>{{ $menu->week_start . ' - ' . $date }}</u></p>
 

@@ -55,7 +55,7 @@ class MenuController extends Controller
         $menu = new Menu;
         $menu->week_start = $request->input('weekStart');
 
-        DB::transaction(function () use ($menu, $request) {
+        DB::transaction(function() use ($menu, $request) {
             $menu->save();
 
             $input = $request->except('weekStart', '_token');
@@ -66,7 +66,7 @@ class MenuController extends Controller
             $menu->recipes()->attach($data);
         });
 
-        return redirect()->route('oneMenu', ['menu' => $menu]);
+        return redirect()->route('oneMenu', ['menu' => $menu])->with('success', 'Meniu buvo išsaugotas');
     }
 
 
@@ -80,15 +80,17 @@ class MenuController extends Controller
         $request->validate($this->getWeekValidation());
         $menu = new Menu;
         $menu->week_start = $request->input('weekStart');
-        $menu->save();
-        $selectedMenu = Menu::find($request->input('selectedMenu'));
-        $data = [];
-        foreach ($selectedMenu->recipes as $recipe){
-            $data[$recipe->id] = ['week_day' => $recipe->pivot->week_day];
-        }
-        $menu->recipes()->attach($data);
+        DB::transaction(function() use ($menu, $request) {
+            $menu->save();
+            $selectedMenu = Menu::find($request->input('selectedMenu'));
+            $data = [];
+            foreach ($selectedMenu->recipes as $recipe) {
+                $data[$recipe->id] = ['week_day' => $recipe->pivot->week_day];
+            }
+            $menu->recipes()->attach($data);
+        });
 
-        return redirect()->route('oneMenu', ['menu' => $menu]);
+        return redirect()->route('oneMenu', ['menu' => $menu])->with('success', 'Meniu buvo išsaugotas');
     }
 
 
