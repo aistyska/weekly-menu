@@ -18,6 +18,9 @@
         @error('weekStart')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
+        @error('selectedMenu')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>

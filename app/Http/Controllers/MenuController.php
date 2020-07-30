@@ -20,6 +20,7 @@ class MenuController extends Controller
         ]];
     }
 
+
     public function generationType(){
         return view('pages.choose-generation-type');
     }
@@ -77,7 +78,9 @@ class MenuController extends Controller
 
 
     public function saveOldMenuAsNew(Request $request){
-        $request->validate($this->getWeekValidation());
+        $validationRules = $this->getWeekValidation();
+        $validationRules['selectedMenu'] = ['required'];
+        $request->validate($validationRules);
         $menu = new Menu;
         $menu->week_start = $request->input('weekStart');
         DB::transaction(function() use ($menu, $request) {
