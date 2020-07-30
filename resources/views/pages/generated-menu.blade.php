@@ -37,17 +37,17 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="saveMenuModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Išsaugoti meniu</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form method="post" action="/save-menu">
-                    @csrf
+    <div class="modal fade" id="saveMenuModal" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <form method="post" action="/save-menu">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Išsaugoti meniu</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     <div class="modal-body row">
                         <div class="form-group col">
                             <label for="date">Pasirinkite savaitės menu pradžios datą (pirmadienį)</label>
@@ -68,8 +68,8 @@
                         <button type="submit" class="btn btn-outline-success">Išsaugoti</button>
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Atšaukti</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 
