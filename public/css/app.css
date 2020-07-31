@@ -10937,3 +10937,23 @@ a.text-dark:focus {
   transform: scale(1.1);
 }
 
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+  padding-bottom: 55px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 55px;
+  width: 100%;
+}
+
