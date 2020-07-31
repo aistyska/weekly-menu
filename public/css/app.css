@@ -10929,3 +10929,11 @@ a.text-dark:focus {
   }
 }
 
+.card-grow {
+  transition: all 0.2s ease;
+}
+
+.card-grow:hover {
+  transform: scale(1.1);
+}
+
