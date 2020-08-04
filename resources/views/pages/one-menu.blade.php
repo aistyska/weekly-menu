@@ -10,10 +10,10 @@
         </div>
     @endif
 
-    <h2>Savaitės meniu</h2>
+    <h2 class="my-3">Savaitės meniu</h2>
     <p><u>{{ $menu->week_start . ' - ' . $date }}</u></p>
 
-    <div class="table-responsive">
+    <div class="table-responsive mt-3">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -28,9 +28,9 @@
             </thead>
             <tbody>
                 <tr>
-                @foreach($menu->recipes()->orderBy('menu_recipe.week_day', 'asc')->get() as $recipe)
+                    @foreach($menu->recipes()->orderBy('menu_recipe.week_day', 'asc')->get() as $recipe)
                     <td><a href="{{route('oneRecipe', ['recipe' => $recipe->id])}}" class="text-dark" target="_blank">{{ $recipe->title }}</a></td>
-                @endforeach
+                    @endforeach
                 </tr>
             </tbody>
         </table>

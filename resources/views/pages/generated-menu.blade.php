@@ -4,15 +4,13 @@
 
 @section('content')
 
-    <h2>Savaitės meniu</h2>
-    <h5>Vienas patiekalas yra skirtas vienos dienos vakarienei bei kitos dienos pietums.</h5>
-    <p class="text-muted">Patiekalai į savaitės meniu yra sudėti atsitiktine tvarka. Patiekalo receptą galite pamatyti paspaudę ant jo pavadinimo.</p>
-    <p>Nepatinka šis meniu? <a href="{{ route('generate') }}" class="btn btn-outline-dark btn-sm">Generuoti naują</a></p>
+    <h2 class="mb-3">Savaitės meniu</h2>
+    <h5>Patiekalai į savaitės meniu yra sudėti atsitiktine tvarka.</h5>
+    <p class="text-muted">Vienas patiekalas yra skirtas tos dienos vakarienei bei kitos dienos pietums. Patiekalo receptą galite pamatyti paspaudę ant jo pavadinimo.</p>
+    <button type="button" class="btn btn-outline-success m-1" data-toggle="modal" data-target="#saveMenuModal">Išsaugoti</button>
+    <a href="{{ route('generate') }}" class="btn btn-outline-dark m-1">Generuoti naują</a>
 
-    <p>Patinka meniu?</p>
-    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#saveMenuModal">Išsaugoti</button>
-
-    <div class="table-responsive">
+    <div class="table-responsive mt-3">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -27,9 +25,9 @@
             </thead>
             <tbody>
                 <tr>
-            @foreach($menu as $recipe)
+                @foreach($menu as $recipe)
                     <td><a href="{{route('oneRecipe', ['recipe' => $recipe->id])}}" class="text-dark" target="_blank">{{ $recipe->title }}</a></td>
-            @endforeach
+                @endforeach
                 </tr>
             </tbody>
         </table>
@@ -50,14 +48,14 @@
                     </div>
                     <div class="modal-body row">
                         <div class="form-group col">
-                            <label for="date">Pasirinkite savaitės menu pradžios datą (pirmadienį)</label>
+                            <label for="date">Pasirinkite savaitės pradžios datą (pirmadienį)</label>
                             <input type="date" class="form-control" id="date" name="weekStart" value="{{ old('weekStart') }}">
                             @error('weekStart')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <ul class="list-group list-group-flush col">
-                            <li class="list-group-item text-center">Patiekalai</li>
+                            <li class="list-group-item text-center"><u>Patiekalai</u></li>
                             @foreach($menu as $index => $recipe)
                             <input type="text" name="{{ $index + 1 }}" value="{{ $recipe->id }}" hidden>
                             <li class="list-group-item">{{ $recipe->title }}</li>

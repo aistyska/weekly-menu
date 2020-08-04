@@ -4,21 +4,22 @@
 
 @section('content')
 
-    <h2>Savaitės meniu</h2>
-    <h5>Vienas patiekalas yra skirtas vienos dienos vakarienei bei kitos dienos pietums.</h5>
-    <p>Patiekalai į savaitės meniu yra sudėti atsitiktine tvarka. Jūs galite keisti patiekalus bei jų išdėstymo tvarką ir taip pakoreguoti automatiškai sugenetuotą savaitės meniu.</p>
+    <h2 class="mb-3">Savaitės meniu</h2>
+    <h5>Patiekalai į savaitės meniu yra sudėti atsitiktine tvarka. Jūs galite keisti patiekalus bei jų išdėstymo tvarką.</h5>
+    <p class="text-muted">Vienas patiekalas yra skirtas tos dienos vakarienei bei kitos dienos pietums.</p>
 
     <form method="post" action="/save-menu">
         @csrf
-        <button type="submit" class="btn btn-outline-success">Išsaugoti</button>
-        <div class="form-group">
-            <label for="date">Pasirinkite savaitės menu pradžios datą (pirmadienį)</label>
+        <button type="submit" class="btn btn-outline-success my-1 d-block">Išsaugoti</button>
+        <div class="form-group d-inline-block">
+            <label for="date">Pasirinkite savaitės pradžios datą (pirmadienį)</label>
             <input type="date" class="form-control" id="date" name="weekStart" value="{{ old('weekStart') }}">
         </div>
         @error('weekStart')
-        <div class="alert alert-danger">{{ $message }}</div>
+        <div class="alert alert-danger d-inline-block">{{ $message }}</div>
         @enderror
-        <div class="table-responsive">
+
+        <div class="table-responsive mt-3">
             <table class="table table-hover">
                 <thead>
                     <tr>

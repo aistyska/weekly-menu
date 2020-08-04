@@ -4,9 +4,9 @@
 
 @section('content')
 
-    <h2>Praėjusių savaičių meniu</h2>
+    <h2 class="mb-3">Praėjusių savaičių meniu</h2>
 
-    <div class="table-responsive">
+    <div class="table-responsive mt-3">
         <table class="table table-hover">
             <thead>
                 <tr>
