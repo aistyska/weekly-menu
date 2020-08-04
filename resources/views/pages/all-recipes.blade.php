@@ -12,6 +12,15 @@
 
     <h2 class="mb-3">Visi receptai</h2>
     <div class="row row-cols-1 row-cols-md-3">
+        <div class="col mb-4 card-grow">
+            <div class="card text-center">
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title mt-auto">Naujas receptas</h4>
+                    <h6 class="card-subtitle text-muted mb-2">Užpildykite formą ir išsaugokite naują receptą</h6>
+                    <a href="{{route('newRecipe')}}" class="btn btn-dark stretched-link mt-auto">Sukurti receptą</a>
+                </div>
+            </div>
+        </div>
         @foreach($recipes as $recipe)
         <div class="col mb-4 card-grow">
             <div class="card text-center">

@@ -10937,6 +10937,10 @@ a.text-dark:focus {
   transform: scale(1.1);
 }
 
+.card-grow .card:hover {
+  border-color: #1b1e21;
+}
+
 body {
   position: relative;
   min-height: 100vh;
