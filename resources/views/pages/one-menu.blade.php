@@ -11,7 +11,8 @@
     @endif
 
     <h2 class="my-3">Savaitės meniu</h2>
-    <p><u>{{ $menu->week_start . ' - ' . $date }}</u></p>
+    <p class="d-sm-inline-block m-sm-0"><u>{{ $menu->week_start . ' - ' . $date }}</u></p>
+    <a href="{{ route('downloadPDF', ['menu' => $menu]) }}" class="btn btn-outline-dark my-1 mb-sm-3 float-sm-right" role="button">Atsisiųsti PDF</a>
 
     <div class="table-responsive mt-3">
         <table class="table table-hover">
@@ -28,7 +29,7 @@
             </thead>
             <tbody>
                 <tr>
-                    @foreach($menu->recipes()->orderBy('menu_recipe.week_day', 'asc')->get() as $recipe)
+                    @foreach($menu->getOrderedRecipesByWeekDay() as $recipe)
                     <td><a href="{{route('oneRecipe', ['recipe' => $recipe->id])}}" class="text-dark" target="_blank">{{ $recipe->title }}</a></td>
                     @endforeach
                 </tr>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Recipe;
 use App\Menu;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class MenuController extends Controller
 {
@@ -105,5 +106,15 @@ class MenuController extends Controller
     public function allMenus(){
         $menus = Menu::orderBy('week_start', 'desc')->get();
         return view('pages.all-menus', ['menus' => $menus]);
+    }
+
+
+    public function downloadPDF(Menu $menu){
+        $weekMenu = [
+            'date' => $menu->week_start . ' - ' . $menu->getWeekEnd(),
+            'recipes' => $menu->getOrderedRecipesByWeekDay()
+        ];
+        $pdf = PDF::loadView('pdf', $weekMenu);
+        return $pdf->download('meniu' . str_replace(" ", "", $weekMenu['date']) . '.pdf');
     }
 }

@@ -39,3 +39,5 @@ Route::post('/save-menu-as-new', 'MenuController@saveOldMenuAsNew');
 
 Route::get('/menu/all', 'MenuController@allMenus')->name('allMenus');
 Route::get('/menu/{menu}', 'MenuController@oneMenu')->name('oneMenu');
+
+Route::get('/menu/{menu}/downloadPDF', 'MenuController@downloadPDF')->name('downloadPDF');
