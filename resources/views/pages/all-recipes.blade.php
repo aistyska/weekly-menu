@@ -34,5 +34,6 @@
         </div>
         @endforeach
     </div>
+    <button type="button" id="toTopBtn" class="btn btn-outline-dark">Į viršų</button>
 
 @endsection

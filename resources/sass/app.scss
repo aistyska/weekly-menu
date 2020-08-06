@@ -34,3 +34,11 @@ footer {
     height: 32+23px;
     width: 100%;
 }
+
+#toTopBtn {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    bottom: 40px;
+    right: 5px;
+}
