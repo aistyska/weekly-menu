@@ -41,4 +41,9 @@ footer {
     z-index: 99;
     bottom: 40px;
     right: 5px;
+    background-color: $body-bg;
+
+    &:hover {
+        background-color: #343a40;
+    }
 }
