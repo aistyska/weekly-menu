@@ -56,10 +56,9 @@ class RecipeController extends Controller
             'url' => ['nullable', 'url', 'max:2000'],
             'comment' => ['nullable', 'max:1000']
         ]);
-
-        $recipe->update($request->only(['title', 'ingredients', 'instructions', 'url', 'comment']));
-        $recipe->use_in_menu = $request->boolean('use_in_menu');
-        $recipe->save();
+        $data = $request->only(['title', 'ingredients', 'instructions', 'url', 'comment']);
+        $data['use_in_menu'] = $request->boolean('use_in_menu');
+        $recipe->update($data);
         return redirect()->route('oneRecipe', ['recipe' => $recipe])->with('success', 'Receptas buvo atnaujintas');
     }
 
