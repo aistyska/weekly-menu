@@ -29,7 +29,8 @@ class RecipeController extends Controller
             'ingredients' => $request->input('ingredients'),
             'instructions' => $request->input('instructions'),
             'url' => $request->input('url'),
-            'comment' => $request->input('comment')
+            'comment' => $request->input('comment'),
+            'use_in_menu' => $request->boolean('use_in_menu')
         ]);
         return redirect()->route('oneRecipe', ['recipe' => $recipe])->with('success', 'Receptas buvo išsaugotas');
     }
@@ -57,6 +58,8 @@ class RecipeController extends Controller
         ]);
 
         $recipe->update($request->only(['title', 'ingredients', 'instructions', 'url', 'comment']));
+        $recipe->use_in_menu = $request->boolean('use_in_menu');
+        $recipe->save();
         return redirect()->route('oneRecipe', ['recipe' => $recipe])->with('success', 'Receptas buvo atnaujintas');
     }
 

@@ -45,6 +45,10 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+        <div class="custom-control custom-checkbox mb-2">
+            <input type="checkbox" class="custom-control-input" id="useInMenu" name="use_in_menu" @if($recipe->use_in_menu == 1) checked @endif>
+            <label class="custom-control-label" for="useInMenu">Receptas gali būti naudojamas sudarinėjant savaitės meniu</label>
+        </div>
         <button type="button" class="btn btn-outline-success m-1" data-toggle="modal" data-target="#saveRecipeModal">Išsaugoti</button>
         <a class="btn btn-outline-danger m-1" href="{{ route('oneRecipe', ['recipe' => $recipe->id]) }}" role="button">Atšaukti</a>
 
@@ -53,13 +57,13 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Išsaugoti receptą</h5>
+                        <h5 class="modal-title">Atnaujinti receptą</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Ar tikrai norite išsaugoti naują receptą?</p>
+                        <p>Ar tikrai norite išsaugoti atnaujintą receptą?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-outline-success">Išsaugoti</button>
