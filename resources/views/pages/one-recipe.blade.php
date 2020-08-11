@@ -8,6 +8,10 @@
         <div class="alert alert-success mt-1">
             {{ session('success') }}
         </div>
+    @elseif(session('warning'))
+        <div class="alert alert-warning mt-1">
+            {{ session('warning') }}
+        </div>
     @endif
 
     <a class="btn btn-outline-dark" href="{{ route('allRecipes') }}">Visi receptai</a>

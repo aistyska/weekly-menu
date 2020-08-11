@@ -63,7 +63,13 @@ class RecipeController extends Controller
     }
 
     public function deleteRecipe(Recipe $recipe){
-        $recipe->delete();
-        return redirect()->route('allRecipes')->with('success', 'Receptas buvo ištrintas.');
+        $menus = $recipe->menus()->first();
+        if (empty($menus)) {
+            $recipe->delete();
+            return redirect()->route('allRecipes')->with('success', 'Receptas buvo ištrintas.');
+        } else {
+            $recipe->update(['use_in_menu' => 0]);
+            return redirect()->route('oneRecipe', ['recipe' => $recipe])->with('warning', 'Receptas negali būti ištrintas, nes anksčiau buvo įtrauktas į savaitės meniu. Šis receptas NEBUS naudojamas sudarinėjant savaitės meniu.');
+        }
     }
 }
