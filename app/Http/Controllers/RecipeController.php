@@ -12,8 +12,12 @@ class RecipeController extends Controller
         return view('pages/home');
     }
 
-    public function addRecipe(){
-        return view('pages.add-recipe');
+    public function addRecipe(Request $request){
+        $useIn = true;
+        if ($request->old('_token') !== null && $request->old('use_in_menu') != "on") {
+            $useIn = false;
+        }
+        return view('pages.add-recipe', ['checked' => $useIn]);
     }
 
     public function saveRecipe(Request $request){

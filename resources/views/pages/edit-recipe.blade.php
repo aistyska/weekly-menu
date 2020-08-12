@@ -46,7 +46,7 @@
             @enderror
         </div>
         <div class="custom-control custom-checkbox mb-2">
-            <input type="checkbox" class="custom-control-input" id="useInMenu" name="use_in_menu" @if($recipe->use_in_menu == 1) checked @endif>
+            <input type="checkbox" class="custom-control-input" id="useInMenu" name="use_in_menu" @if(($recipe->use_in_menu == 1 && old('_token') === null) || old('use_in_menu') == "on") checked @endif>
             <label class="custom-control-label" for="useInMenu">Receptas gali būti naudojamas sudarinėjant savaitės meniu</label>
         </div>
         <button type="button" class="btn btn-outline-success m-1" data-toggle="modal" data-target="#saveRecipeModal">Išsaugoti</button>
