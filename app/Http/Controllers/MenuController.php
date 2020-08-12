@@ -34,20 +34,20 @@ class MenuController extends Controller
                 $recipes[] = Recipe::find($request->old($i));
             }
         } else {
-            $recipes = Recipe::inRandomOrder()->limit(7)->get();
+            $recipes = Recipe::where('use_in_menu', 1)->inRandomOrder()->limit(7)->get();
         }
         return view('pages.generated-menu', ['menu' => $recipes]);
     }
 
 
     public function manualMenu(){
-        return view('pages.manual-menu', ['recipes' => Recipe::orderBy('title', 'asc')->get()]);
+        return view('pages.manual-menu', ['recipes' => Recipe::where('use_in_menu', 1)->orderBy('title', 'asc')->get()]);
     }
 
 
     public function mixedMenu(){
-        $randomRecipes = Recipe::inRandomOrder()->limit(7)->get('id');
-        $recipes = Recipe::orderBy('title', 'asc')->get();
+        $randomRecipes = Recipe::where('use_in_menu', 1)->inRandomOrder()->limit(7)->get('id');
+        $recipes = Recipe::where('use_in_menu', 1)->orderBy('title', 'asc')->get();
         return view('pages.generate-manual-menu', ['randomRecIds' => $randomRecipes, 'recipes' => $recipes]);
     }
 
