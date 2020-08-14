@@ -37277,20 +37277,23 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var scrollButton = document.querySelector('#toTopBtn');
-window.addEventListener('scroll', function () {
-  if (document.documentElement.scrollTop > 70) {
-    scrollButton.style.display = "block";
-  } else {
-    scrollButton.style.display = "none";
-  }
-});
-scrollButton.addEventListener('click', function () {
-  window.scroll({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
+
+if (scrollButton) {
+  window.addEventListener('scroll', function () {
+    if (document.documentElement.scrollTop > 70) {
+      scrollButton.style.display = "block";
+    } else {
+      scrollButton.style.display = "none";
+    }
   });
-});
+  scrollButton.addEventListener('click', function () {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  });
+}
 
 /***/ }),
 
