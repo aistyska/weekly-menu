@@ -11,6 +11,20 @@
     @endif
 
     <h2 class="mb-3">Visi receptai</h2>
+
+    <form class="d-flex mb-4" method="get">
+        <input type="search" class="form-control mr-2" id="search" name="title" placeholder="Recepto pavadinimas" value="{{ $input }}">
+        <button type="submit" class="btn btn-outline-success">Ieškoti</button>
+    </form>
+    @error('title')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    @if($count == 0)
+        <div class="alert alert-warning mt-1">
+            Rezultatų, atitinkančių paiešką "{{ $input }}" nėra.
+        </div>
+    @endif
+
     <div class="row row-cols-1 row-cols-md-3">
         <div class="col mb-4 card-grow">
             <div class="card text-center">

@@ -40,8 +40,23 @@ class RecipeController extends Controller
     }
 
 
-    public function allRecipes() {
-        return view('pages.all-recipes', ['recipes' => Recipe::all()]);
+    public function allRecipes(Request $request) {
+        if ($request->filled('title')) {
+            $input = $request->query('title');
+            $request->validate([
+                'title' => ['min:3', 'max:255']
+            ]);
+            $results = Recipe::where('title', 'like', '%' . $input . '%')->orderBy('title', 'asc')->get();
+            $count = count($results);
+            if ($count == 0) {
+                $results = Recipe::orderBy('title', 'asc')->get();
+            }
+        } else {
+            $results = Recipe::orderBy('title', 'asc')->get();
+            $count = count($results);
+            $input = "";
+        }
+        return view('pages.all-recipes', ['recipes' => $results, 'count' => $count, 'input' => $input]);
     }
 
     public function oneRecipe(Recipe $recipe) {

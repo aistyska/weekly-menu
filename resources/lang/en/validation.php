@@ -136,7 +136,8 @@ return [
         'title' => [
             'required' => 'Recepto pavadinimas yra privalomas.',
             'max' => 'Pavadinimas negali būti ilgesnis nei :max simboliai.',
-            'unique' => 'Receptas tokiu pavadinimu jau egzistuoja.'
+            'unique' => 'Receptas tokiu pavadinimu jau egzistuoja.',
+            'min' => 'Paieškos užklausą turi sudaryti bent :min simboliai.'
         ],
         'ingredients' => [
             'required' => 'Ingredientų sąrašas yra privalomas.'
