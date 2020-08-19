@@ -15,7 +15,12 @@
     @endif
 
     <a class="btn btn-outline-dark" href="{{ route('allRecipes') }}">Visi receptai</a>
-    <h2 class="my-3">{{$recipe->title}}</h2>
+    <div>
+        <h2 class="my-3 d-inline-block">{{$recipe->title}}</h2>
+    @if($recipe->use_in_menu == 0)
+        <span class="badge badge-pill badge-warning align-text-top">Neįtraukiamas į meniu</span>
+    @endif
+    </div>
     <div class="row">
         <div class="col-md-5">
             <h4><u>Ingredientai</u></h4>
