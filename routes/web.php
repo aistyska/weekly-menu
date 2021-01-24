@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,31 +15,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'RecipeController@index')->name('home');
+Route::get('/', [RecipeController::class, 'index'])->name('home');
 
-Route::get('/new-recipe', 'RecipeController@addRecipe')->name('newRecipe');
-Route::post('/save-recipe', 'RecipeController@saveRecipe');
+Route::get('/new-recipe', [RecipeController::class, 'addRecipe'])->name('newRecipe');
+Route::post('/save-recipe', [RecipeController::class, 'saveRecipe']);
 
-Route::get('/all-recipes', 'RecipeController@allRecipes')->name('allRecipes');
-Route::get('/recipe/{recipe}', 'RecipeController@oneRecipe')->name('oneRecipe');
+Route::get('/all-recipes', [RecipeController::class, 'allRecipes'])->name('allRecipes');
+Route::get('/recipe/{recipe}', [RecipeController::class, 'oneRecipe'])->name('oneRecipe');
 
-Route::get('/edit-recipe/{recipe}', 'RecipeController@editRecipe')->name('editRecipe');
-Route::post('/save-updated-recipe/{recipe}', 'RecipeController@updateRecipe');
+Route::get('/edit-recipe/{recipe}', [RecipeController::class, 'editRecipe'])->name('editRecipe');
+Route::post('/save-updated-recipe/{recipe}', [RecipeController::class, 'updateRecipe']);
 
-Route::get('/delete-recipe/{recipe}', 'RecipeController@deleteRecipe')->name('deleteRecipe');
+Route::get('/delete-recipe/{recipe}', [RecipeController::class, 'deleteRecipe'])->name('deleteRecipe');
 
 
-Route::get('/generation-type', 'MenuController@generationType')->name('genType');
+Route::get('/generation-type', [MenuController::class, 'generationType'])->name('genType');
 
-Route::get('/menu/generate', 'MenuController@generateMenu')->name('generate');
-Route::get('/menu/manual', 'MenuController@manualMenu')->name('manual');
-Route::get('/menu/generate-and-choose', 'MenuController@mixedMenu')->name('genAndManual');
-Route::get('/menu/previous', 'MenuController@oldMenu')->name('previousMenu');
+Route::get('/menu/generate', [MenuController::class, 'generateMenu'])->name('generate');
+Route::get('/menu/manual', [MenuController::class, 'manualMenu'])->name('manual');
+Route::get('/menu/generate-and-choose', [MenuController::class, 'mixedMenu'])->name('genAndManual');
+Route::get('/menu/previous', [MenuController::class, 'oldMenu'])->name('previousMenu');
 
-Route::post('/save-menu', 'MenuController@saveMenu');
-Route::post('/save-menu-as-new', 'MenuController@saveOldMenuAsNew');
+Route::post('/save-menu', [MenuController::class, 'saveMenu']);
+Route::post('/save-menu-as-new', [MenuController::class, 'saveOldMenuAsNew']);
 
-Route::get('/menu/all', 'MenuController@allMenus')->name('allMenus');
-Route::get('/menu/{menu}', 'MenuController@oneMenu')->name('oneMenu');
+Route::get('/menu/all', [MenuController::class, 'allMenus'])->name('allMenus');
+Route::get('/menu/{menu}', [MenuController::class, 'oneMenu'])->name('oneMenu');
 
-Route::get('/menu/{menu}/downloadPDF', 'MenuController@downloadPDF')->name('downloadPDF');
+Route::get('/menu/{menu}/downloadPDF', [MenuController::class, 'downloadPDF'])->name('downloadPDF');
