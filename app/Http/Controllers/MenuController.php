@@ -61,11 +61,9 @@ class MenuController extends Controller
             $menu->save();
 
             $input = $request->except('weekStart', '_token');
-            $data = [];
             foreach ($input as $day => $recipeId) {
-                $data[$recipeId] = ['week_day' => $day];
+                $menu->recipes()->attach($recipeId, ['week_day' => $day]);
             }
-            $menu->recipes()->attach($data);
         });
 
         return redirect()->route('oneMenu', ['menu' => $menu])->with('success', 'Meniu buvo išsaugotas');
