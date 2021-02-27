@@ -13,11 +13,16 @@ class RecipeController extends Controller
     }
 
     public function addRecipe(Request $request){
-        $useIn = true;
-        if ($request->old('_token') !== null && $request->old('use_in_menu') != "on") {
-            $useIn = false;
+        $sideDish = false;
+        $needsSideDish = false;
+        if ($request->old('_token') !== null) {
+            if ($request->old('sideDish.0') == "needs_side_dish") {
+                $needsSideDish = true;
+            } elseif ($request->old('sideDish.0') == "is_side_dish") {
+                $sideDish = true;
+            }
         }
-        return view('pages.add-recipe', ['checked' => $useIn]);
+        return view('pages.add-recipe', ['needsSideDish' => $needsSideDish, 'isSideDish' => $sideDish]);
     }
 
     public function saveRecipe(Request $request){
@@ -26,7 +31,8 @@ class RecipeController extends Controller
             'ingredients' => ['required'],
             'instructions' => ['required'],
             'url' => ['nullable', 'url', 'max:2000'],
-            'comment' => ['nullable', 'max:1000']
+            'comment' => ['nullable', 'max:1000'],
+            'sideDish' => ['nullable', 'max:1']
         ]);
         $recipe = Recipe::create([
             'title' => $request->input('title'),
@@ -34,7 +40,8 @@ class RecipeController extends Controller
             'instructions' => $request->input('instructions'),
             'url' => $request->input('url'),
             'comment' => $request->input('comment'),
-            'use_in_menu' => $request->boolean('use_in_menu')
+            'needs_side_dish' => $request->input('sideDish.0') == 'needs_side_dish',
+            'is_side_dish' => $request->input('sideDish.0') == 'is_side_dish'
         ]);
         return redirect()->route('oneRecipe', ['recipe' => $recipe])->with('success', 'Receptas buvo išsaugotas');
     }
@@ -73,10 +80,12 @@ class RecipeController extends Controller
             'ingredients' => ['required'],
             'instructions' => ['required'],
             'url' => ['nullable', 'url', 'max:2000'],
-            'comment' => ['nullable', 'max:1000']
+            'comment' => ['nullable', 'max:1000'],
+            'sideDish' => ['nullable', 'max:1']
         ]);
         $data = $request->only(['title', 'ingredients', 'instructions', 'url', 'comment']);
-        $data['use_in_menu'] = $request->boolean('use_in_menu');
+        $data['needs_side_dish'] = $request->input('sideDish.0') == 'needs_side_dish';
+        $data['is_side_dish'] = $request->input('sideDish.0') == 'is_side_dish';
         $recipe->update($data);
         return redirect()->route('oneRecipe', ['recipe' => $recipe])->with('success', 'Receptas buvo atnaujintas');
     }
@@ -87,8 +96,7 @@ class RecipeController extends Controller
             $recipe->delete();
             return redirect()->route('allRecipes')->with('success', 'Receptas buvo ištrintas.');
         } else {
-            $recipe->update(['use_in_menu' => 0]);
-            return redirect()->route('oneRecipe', ['recipe' => $recipe])->with('warning', 'Receptas negali būti ištrintas, nes anksčiau buvo įtrauktas į savaitės meniu. Šis receptas NEBUS naudojamas sudarinėjant savaitės meniu.');
+            return redirect()->route('oneRecipe', ['recipe' => $recipe])->with('warning', 'Receptas negali būti ištrintas, nes anksčiau buvo įtrauktas į savaitės meniu.');
         }
     }
 }

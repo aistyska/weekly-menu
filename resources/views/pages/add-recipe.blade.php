@@ -46,8 +46,12 @@
             @enderror
         </div>
         <div class="custom-control custom-checkbox mb-2">
-            <input type="checkbox" class="custom-control-input" id="useInMenu" name="use_in_menu" @if($checked) checked @endif>
-            <label class="custom-control-label" for="useInMenu">Receptas gali būti naudojamas sudarinėjant savaitės meniu</label>
+            <input type="checkbox" class="custom-control-input" id="needsSideDish" name="sideDish[]" value="needs_side_dish" @if($needsSideDish) checked @endif>
+            <label class="custom-control-label" for="needsSideDish">Šiam patiekalui papildomai reikia garnyro</label>
+        </div>
+        <div class="custom-control custom-checkbox mb-2">
+            <input type="checkbox" class="custom-control-input" id="isSideDish" name="sideDish[]" value="is_side_dish" @if($isSideDish) checked @endif>
+            <label class="custom-control-label" for="isSideDish">Tai yra garnyras</label>
         </div>
         <button type="button" class="btn btn-outline-success m-1" data-toggle="modal" data-target="#saveRecipeModal">Išsaugoti</button>
         <a class="btn btn-outline-danger m-1" href="{{ route('allRecipes') }}" role="button">Atšaukti</a>
@@ -75,4 +79,9 @@
 
     </form>
 
+@endsection
+
+@section('scripts')
+    @parent
+    <script src={{asset('js/recipeForm.js')}}></script>
 @endsection

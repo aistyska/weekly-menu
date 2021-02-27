@@ -17,8 +17,10 @@
     <a class="btn btn-outline-dark" href="{{ route('allRecipes') }}">Visi receptai</a>
     <div>
         <h2 class="my-3 d-inline-block">{{$recipe->title}}</h2>
-    @if($recipe->use_in_menu == 0)
-        <span class="badge badge-pill badge-warning align-text-top">Neįtraukiamas į meniu</span>
+    @if($recipe->needs_side_dish == 1)
+        <span class="badge badge-pill badge-primary align-text-top">Papildomai reikia garnyro</span>
+    @elseif($recipe->is_side_dish == 1)
+        <span class="badge badge-pill badge-success align-text-top">Garnyras</span>
     @endif
     </div>
     <div class="row">
