@@ -26,7 +26,10 @@
             <tbody>
                 <tr>
                 @foreach($menu as $recipe)
-                    <td><a href="{{route('oneRecipe', ['recipe' => $recipe->id])}}" class="text-dark" target="_blank">{{ $recipe->title }}</a></td>
+                    <td><a href="{{route('oneRecipe', ['recipe' => $recipe->id])}}" class="text-dark" target="_blank">{{ $recipe->title }}</a>
+                    @if($recipe->needs_side_dish)
+                        ir <a href="{{route('oneRecipe', ['recipe' => $sideDishes[$recipe->id]->id])}}" class="text-dark" target="_blank">{{ $sideDishes[$recipe->id]->title }}</a>
+                    @endif</td>
                 @endforeach
                 </tr>
             </tbody>
@@ -57,8 +60,13 @@
                         <ul class="list-group list-group-flush col">
                             <li class="list-group-item text-center"><u>Patiekalai</u></li>
                             @foreach($menu as $index => $recipe)
-                            <input type="text" name="{{ $index + 1 }}" value="{{ $recipe->id }}" hidden>
+                            <input type="text" name="{{ $index + 1 }}[recipe]" value="{{ $recipe->id }}" hidden>
+                            @if($recipe->needs_side_dish)
+                            <input type="text" name="{{ $index + 1 }}[side]" value="{{ $sideDishes[$recipe->id]->id }}" hidden>
+                            <li class="list-group-item">{{ $recipe->title }} ir {{ $sideDishes[$recipe->id]->title }}</li>
+                            @else
                             <li class="list-group-item">{{ $recipe->title }}</li>
+                            @endif
                             @endforeach
                         </ul>
                     </div>

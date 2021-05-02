@@ -30,13 +30,25 @@ class MenuController extends Controller
     public function generateMenu(Request $request){
         if ($request->old('_token') !== null) {
             $recipes = [];
+            $sideDishes = [];
             for ($i = 1; $i < 8; $i++){
-                $recipes[] = Recipe::find($request->old($i));
+                $recipeId = $request->old($i . '.recipe');
+                $sideId = $request->old($i . '.side');
+                $recipes[] = Recipe::find($recipeId);
+                if ($sideId) {
+                    $sideDishes[$recipeId] = Recipe::find($sideId);
+                }
             }
         } else {
-            $recipes = Recipe::inRandomOrder()->limit(7)->get();
+            $recipes = Recipe::where('is_side_dish', 0)->inRandomOrder()->limit(7)->get();
+            $sideDishes = [];
+            foreach($recipes as $recipe){
+                if ($recipe->needs_side_dish) {
+                    $sideDishes[$recipe->id] = Recipe::where('is_side_dish', 1)->inRandomOrder()->first();
+                }
+            }
         }
-        return view('pages.generated-menu', ['menu' => $recipes]);
+        return view('pages.generated-menu', ['menu' => $recipes, 'sideDishes' => $sideDishes]);
     }
 
 
